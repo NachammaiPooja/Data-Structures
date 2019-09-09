@@ -1,0 +1,265 @@
+SSN College of Engineering, Kalavakkam
+Department of Computer Science and Engineering
+III Semester - CSE 'A ',’B’ & ‘C’
+UCS 1312 Data Structures Lab Laboratory
+Academic Year: 2019-2020                                                         Batch: 2018-2022
+Name:-S.Nachammai Devi Pooja
+Class:- CSE             Sec:-B
+Reg No:-185001096
+Exercise 1: Searching and Sorting
+Write a menu driven program to perform the following operations
+1. Linear Search
+2. Binary Search
+3. Any two sorting algorithms
+Program Code:- 
+#include<stdio.h>
+void linearser(){
+  int a[10],n,k,flag=0;
+  printf("\nEnter the number of terms ");
+  scanf("%d",&n);
+  printf("\nEnter the number in the array");
+  for(int i=0;i<n;i++)
+  {
+    printf("\nEnter the %d number ",i+1);
+    scanf("%d",&a[i]);
+  }
+  printf("\nEnter the number to search ");
+  scanf("%d",&k);
+  for(int i=0;i<n;i++)
+  {	
+  	if(a[i]==k)
+  		flag=1;
+  }
+  if(flag>0)
+       printf("\nElement found");
+  else
+       printf("\nElement not found");                                                                                                                                                                                                                                                                                                                                                    
+}
+void binaryser(){
+  int a[10],n,k,ll,ul,mid;
+  printf("\nEnter the number of terms ");
+  scanf("%d",&n);
+  printf("\nEnter the number in the array");
+  for(int i=0;i<n;i++)
+  {
+    printf("\nEnter the %d number ",i+1);
+    scanf("%d",&a[i]);
+  }
+  printf("\nEnter the number to search ");
+  scanf("%d",&k);
+  ll=0;
+  ul=n-1;
+  mid=(ll+ul)/2;
+  while(ll<=ul)
+  { 
+    if(a[mid]==k)
+     {printf("\nThe element is found at %d",mid+1);
+     break;}
+  else if(a[mid]>k)
+    ll=mid+1;
+    else
+     ul=mid-1;
+   mid=(ll+ul)/2;
+  }
+  if(ll>ul)
+    {printf("\nElement is not found");}
+}
+void selsort(){
+    int a[10],n,temp;
+  printf("\nEnter the number of terms ");
+  scanf("%d",&n);
+  printf("\nEnter the number in the array");
+  for(int i=0;i<n;i++)
+  {
+    printf("\nEnter the %d number ",i+1);
+    scanf("%d",&a[i]);
+  }
+  for(int i=0;i<n;i++)
+  {	
+  	for(int j=i+1;j<n;j++)
+    {
+      if(a[i]>a[j])
+      {
+        temp=a[i];
+        a[i]=a[j];
+        a[j]=temp;
+      }
+    }
+  } 
+  printf("\nThe sorted array is ");
+  for(int i=0;i<n;i++)
+  {
+    printf("%d\t",a[i]);
+  }                                                                                                                                                                                                                                                                                                                                                   
+}
+void bublsort(){
+  int a[10],n,t;
+  printf("\nEnter the number of terms ");
+  scanf("%d",&n);
+  printf("\nEnter the number in the array");
+  for(int i=0;i<n;i++)
+  {
+    printf("\nEnter the %d number ",i+1);
+    scanf("%d",&a[i]);
+  }
+  for(int i=0;i<n;i++)
+  {
+      for(int j=0;j<n-1;j++)
+      {
+          if(a[j]>a[j+1])
+          {
+              t=a[j];
+              a[j]=a[j+1];
+              a[j+1]=t;
+          }
+      }
+  }
+  printf("\nThe sorted array is ");
+  for(int i=0;i<n;i++)
+  {
+    printf("%d\t",a[i]);
+  }
+}
+int main()
+{
+  int ch;
+  printf("\nSelect the operation to perform from the following:-\n1.Linear search\n2.Binary search\n3.Selection sort\n4.Buble sort\nEnter\t");
+  scanf("%d",&ch);
+  switch(ch)
+  {
+    case 1 : linearser();
+             break;
+    case 2 : binaryser();
+             break;
+    case 3 : selsort();
+             break;
+    case 4 : bublsort();
+             break;
+  }
+}
+OUTPUT:-
+CASE 1:-
+a)Found
+$ gcc ser.c -o ser
+$ ./ser
+
+Select the operation to perform from the following:-
+1.Linear search
+2.Binary search
+3.Selection sort
+4.Buble sort
+Enter	1
+
+Enter the number of terms 5
+Enter the number in the array
+Enter the 1 number 12
+Enter the 2 number 45
+Enter the 3 number 23
+Enter the 4 number 3
+Enter the 5 number 87
+Enter the number to search 3
+Element found
+
+CASE 1:-
+b)Not Found
+$ gcc ser.c -o ser
+$ ./ser
+
+Select the operation to perform from the following:-
+1.Linear search
+2.Binary search
+3.Selection sort
+4.Buble sort
+Enter	1
+
+Enter the number of terms 5
+Enter the number in the array
+Enter the 1 number 12
+Enter the 2 number 43
+Enter the 3 number 23
+Enter the 4 number 30
+Enter the 5 number 87
+Enter the number to search 3
+Element not found
+
+CASE 2:-
+a)Found
+$ gcc ser.c -o ser
+$ ./ser
+
+Select the operation to perform from the following:-
+1.Linear search
+2.Binary search
+3.Selection sort
+4.Buble sort
+Enter	2
+
+Enter the number of terms 3
+Enter the number in the array
+Enter the 1 number 23
+Enter the 2 number 67
+Enter the 3 number 12
+Enter the number to search 67
+The element is found at 2
+
+CASE 2:-
+b)Not Found
+$ gcc ser.c -o ser
+$ ./ser
+Select the operation to perform from the following:-
+1.Linear search
+2.Binary search
+3.Selection sort
+4.Buble sort
+Enter	2
+
+Enter the number of terms 4
+Enter the number in the array
+Enter the 1 number 65
+Enter the 2 number 78
+Enter the 3 number 2
+Enter the 4 number 3
+Enter the number to search 8
+Element is not found
+
+CASE 3:-
+$ gcc ser.c -o ser
+$ ./ser
+
+Select the operation to perform from the following:-
+1.Linear search
+2.Binary search
+3.Selection sort
+4.Buble sort
+Enter	3
+
+Enter the number of terms 4
+
+Enter the number in the array
+Enter the 1 number 23
+Enter the 2 number 90
+Enter the 3 number 7
+Enter the 4 number 49
+The sorted array is 7	 23	49	90
+
+CASE 4:-
+$ gcc ser.c -o ser
+$ ./ser
+
+Select the operation to perform from the following:-
+1.Linear search
+2.Binary search
+3.Selection sort
+4.Buble sort
+Enter	4
+
+Enter the number of terms 5
+Enter the number in the array
+Enter the 1 number 36
+Enter the 2 number 9
+Enter the 3 number 100
+Enter the 4 number 79
+Enter the 5 number 17
+The sorted array is 9	 17	36	79	100	
+
+
