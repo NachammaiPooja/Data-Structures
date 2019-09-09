@@ -1,0 +1,1190 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Times New Roman;}{\f1\fnil Times New Roman;}}
+{\*\generator Riched20 10.0.17134}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\qc\b\f0\fs28\lang9 SSN College of Engineering, Kalavakkam Department of Computer Science and Engineering III Semester - CSE 'A ',\rquote B\rquote  & \lquote C\rquote\line UCS 1312 Data Structures Lab Laboratory \par
+Academic Year: 2019-2020   Batch: 2018-2022 \par
+Exercise 2: Array Implementation of list ADT \par
+
+\pard\sa200\sl276\slmult1 Name : S.NACHAMMAI DEVI POOJA\par
+Class :CSE                         Sec: B\par
+Reg no: 185001096\line\b0\fs22\par
+
+\pard\sa200\sl240\slmult1 Create a list of 5 student records (using array of structure) with the fields\par
+Regno\par
+Name\par
+Marks in 5 subjects  \par
+
+\pard\sa200\sl276\slmult1 Perform the following operations \par
+\tab 1.\tab Insert a record in the front of the list\par
+\tab 2.\tab Insert a record at the end of the list \par
+\tab 3.\tab Insert a record after a given Regno in the list \par
+\tab 4.\tab Search a given record in the list based on Name \par
+\tab 5.\tab Delete a given student record \par
+\tab 6.\tab Display all students\f1\rquote\f0  record \par
+\tab 7.\tab Display the previous and next record of a given student \line\par
+\ul\b\fs24 PROGRAM CODE:-\ulnone\par
+STRUCTURE HEADER FILE\par
+\b0\fs22  struct detail\{\par
+\tab int regno;\par
+\tab char name[20];\par
+\tab int m1;\par
+\tab int m2;\par
+\tab int m3;\par
+\tab int m4;\par
+\tab int m5;\par
+\};\par
+\par
+\b\fs24 FUNCTIONS  HEADER FILE\b0\fs22\par
+#include<stdio.h>\par
+#include<string.h>\par
+void display(struct detail p[],int n)\{\par
+    printf("\\n The details are");\par
+    \par
+    for(int i=0;i<n;i++)\par
+    \{        printf("\\n Register number %d",p[i].regno);\par
+        printf("\\n Name  %s",p[i].name);\par
+        printf("\\n Mark 1 %d",p[i].m1);\par
+        printf("\\n Mark 2 %d",p[i].m2);\par
+        printf("\\n Mark 3 %d",p[i].m3);\par
+        printf("\\n Mark 4 %d",p[i].m4);\par
+        printf("\\n Mark 5 %d\f1\rdblquote\f0 ,p[i].m5);\par
+       printf(\f1\ldblquote\f0\\n\f1\rdblquote\f0 );\par
+    \}\par
+\}\par
+\par
+void inslast(struct detail p[],int n)\par
+\{\par
+    printf("\\nEnter the new details ");\par
+    printf("\\n Register number ");\par
+    scanf("%d",&p[n].regno);\par
+    printf("\\n Name  ");\par
+    scanf(" %s",p[n].name);\par
+    printf("\\n Mark 1 ");\par
+    scanf("%d",&p[n].m1);\par
+    printf("\\n Mark 2 ");\par
+    scanf("%d",&p[n].m2);\par
+    printf("\\n Mark 3 ");\par
+    scanf("%d",&p[n].m3);\par
+    printf("\\n Mark 4 ");\par
+    scanf("%d",&p[n].m4);\par
+    printf("\\n Mark 5 ");\par
+    scanf("%d",&p[n].m5);\par
+\}\par
+void insfirst(struct detail p[],int n)\par
+\{     for(int i=n;i>0;i--)\{\par
+    p[i]=p[i-1];\}\par
+    printf("\\nEnter the new details ");\par
+    printf("\\n Register number ");\par
+    scanf("%d",&p[0].regno);\par
+    printf("\\n Name  ");\par
+    scanf(" %s",p[0].name);\par
+    printf("\\n Mark 1 ");\par
+    scanf("%d",&p[0].m1);\par
+    printf("\\n Mark 2 ");\par
+    scanf("%d",&p[0].m2);\par
+    printf("\\n Mark 3 ");\par
+    scanf("%d",&p[0].m3);\par
+    printf("\\n Mark 4 ");\par
+    scanf("%d",&p[0].m4);\par
+    printf("\\n Mark 5 ");\par
+    scanf("%d",&p[0].m5);\par
+    \par
+\}\par
+\par
+void insmid(struct detail p[],int n,int r)\par
+\{     int j,flag=0;\par
+    for(int i=0;i<n;i++)\{\par
+        if(p[i].regno==r)\par
+        \{flag=0;\par
+            j=i;\par
+            for(int i=n;i>j+1;i--)\{\par
+                p[i]=p[i-1];\}\par
+            printf("\\nEnter the new details ");\par
+            printf("\\n Register number ");\par
+            scanf("%d",&p[j+1].regno);\par
+            printf("\\n Name  ");\par
+            scanf(" %s",p[j+1].name);\par
+            printf("\\n Mark 1 ");\par
+            scanf("%d",&p[j+1].m1);\par
+            printf("\\n Mark 2 ");\par
+            scanf("%d",&p[j+1].m2);\par
+            printf("\\n Mark 3 ");\par
+            scanf("%d",&p[j+1].m3);\par
+            printf("\\n Mark 4 ");\par
+            scanf("%d",&p[j+1].m4);\par
+            printf("\\n Mark 5 ");\par
+            scanf("%d",&p[j+1].m5);\par
+            n++;\par
+            display(p,n);\par
+            break;\par
+        \}\par
+        else\par
+            flag=1;\par
+    \}\par
+    if(flag!=0)\{\par
+        printf("Register number not found");\par
+    \}\par
+\}\par
+\par
+void ser(struct detail p[],int n,char nam[])\par
+\{     int flag=0;\par
+    for(int i=0;i<n;i++)\{\par
+        if(strcmp(p[i].name,nam)==0)\{\par
+            flag=0;\par
+            printf("\\n The details are");\par
+            printf("\\n Register number %d",p[i].regno);\par
+            printf("\\n Name  %s",p[i].name);\par
+            printf("\\n Mark 1 %d",p[i].m1);\par
+            printf("\\n Mark 2 %d",p[i].m2);\par
+            printf("\\n Mark 3 %d",p[i].m3);\par
+            printf("\\n Mark 4 %d",p[i].m4);\par
+            printf("\\n Mark 5 %d",p[i].m5);\par
+            break;\par
+        \}\par
+        else\{\par
+            flag=1;\}\}\par
+    if(flag!=0)\{\par
+        printf("\\nStudent Name not found");\}\par
+    \par
+\}\par
+\par
+void del(struct detail p[],int n,char nam[])\par
+\{      int j,flag=0;\par
+    for(int i=0;i<n;i++)\{\par
+        if(strcmp(p[i].name,nam)==0)\par
+        \{flag=0;\par
+            j=i;\par
+            for(int i=j;i<n;i++)\{\par
+                p[i]=p[i+1];\par
+            \}\par
+            break;\par
+        \}\par
+        else\par
+            flag=1;\}\par
+    if(flag!=0)\{\par
+        printf("\\n Student Name not found");\}\par
+    \par
+\}\par
+\par
+void dispn(struct detail p[],int n,char nam[])\par
+\{      int j,flag=0;\par
+    for(int i=0;i<n;i++)\{\par
+        if(strcmp(p[i].name,nam)==0)\par
+        \{flag=0;\par
+            printf("\\nThe previous record details are");\par
+            printf("\\n Register number %d",p[i-1].regno);\par
+            printf("\\n Name  %s",p[i-1].name);\par
+            printf("\\n Mark 1 %d",p[i-1].m1);\par
+            printf("\\n Mark 2 %d",p[i-1].m2);\par
+            printf("\\n Mark 3 %d",p[i-1].m3);\par
+            printf("\\n Mark 4 %d",p[i-1].m4);\par
+            printf("\\n Mark 5 %d",p[i-1].m5);\par
+            printf("\\nThe next record details are");\par
+            printf("\\n Register number %d",p[i+1].regno);\par
+            printf("\\n Name  %s",p[i+1].name);\par
+            printf("\\n Mark 1 %d",p[i+1].m1);\par
+            printf("\\n Mark 2 %d",p[i+1].m2);\par
+            printf("\\n Mark 3 %d",p[i+1].m3);\par
+            printf("\\n Mark 4 %d",p[i+1].m4);\par
+            printf("\\n Mark 5 %d",p[i+1].m5);\par
+            break;\par
+        \}\par
+        else\par
+            flag=1;\}\par
+    if(flag!=0)\{\par
+        printf("\\n Register number not found");\}\par
+    \par
+\}\par
+\par
+\b\fs24 MAIN PROGRAM:-\par
+\b0\fs22 #include<stdio.h>\par
+#include<string.h>\par
+#include"struct.h"\par
+#include\f1\rdblquote\f0 func.h"\par
+int main()\par
+\{\par
+    int n,ch,r;\par
+    char nam[10];\par
+    //printf(\f1\ldblquote\f0\\nEnter the num of students ");\par
+    //scanf(\f1\ldblquote\f0 %d\f1\rdblquote\f0 ,&n);\par
+    n=5;\par
+    struct detail p[6];\par
+    for(int i=0;i<n;i++)\par
+    \{\par
+        printf("\\n Enter the details");\par
+        printf("\\n Register number ");\par
+        scanf("%d",&p[i].regno);\par
+        printf("\\n Name  ");\par
+        scanf(" %s",p[i].name);\par
+        printf("\\n Mark 1 ");\par
+        scanf("%d",&p[i].m1);\par
+        printf("\\n Mark 2 ");\par
+        scanf("%d",&p[i].m2);\par
+        printf("\\n Mark 3 ");\par
+        scanf("%d",&p[i].m3);\par
+        printf("\\n Mark 4 ");\par
+        scanf("%d",&p[i].m4);\par
+        printf("\\n Mark 5 ");\par
+        scanf("%d",&p[i].m5);\par
+    \}\par
+    printf("\\n Enter your choice \\n1.To insert a record in the front\\n2.To insert a record in the end\\n3.To insert a record after given reg num\\n4.To search a given record based on name\\n5.To delete a given recod\\n6.To Display all student's record\\n7.To Display the previous and next record of the given student\\nEnter\\t");\par
+    scanf("%d",&ch);\par
+    switch(ch)\par
+    \{case 1 :printf("\\nTo insert in the front of the list");\par
+            insfirst(p,n);\par
+            n++;\par
+            display(p,n);\par
+            break;\par
+        case 2 :\par
+            printf("\\nTo insert in the end of the list");\par
+            inslast(p,n);\par
+            n++;\par
+            display(p,n);\par
+            break;\par
+        case 3:\par
+            printf("\\nTo insert record after given Regno");\par
+            printf("\\nEnter the reg num\\t");\par
+            scanf("%d",&r);\par
+            insmid(p,n,r);\par
+            break;\par
+        case 4:\par
+            printf("\\nTo Search for a given record");\par
+            printf("\\nEnter the name to search\\t");\par
+            scanf(" %[^\\n]",nam);\par
+            ser(p,n,nam);\par
+            break;\par
+        case 5:\par
+            printf("\\nTo Delete a given record");\par
+            printf("\\nEnter the name to delete\\t");\par
+            scanf(" %[^\\n]",nam);\par
+            del(p,n,nam);\par
+            n--;\par
+            display(p,n);\par
+            break;\par
+        case 6:\par
+            printf("\\nTo Display all students' record");\par
+            display(p,n);\par
+            break;\par
+        case 7:\par
+            printf("\\nTo Display the previous and next record of given student");\par
+            printf("\\nEnter the name\\t");\par
+            scanf(" %[^\\n]",nam);\par
+            dispn(p,n,nam);\par
+            break;\par
+                \}\par
+    \}\par
+\b\fs24 OUTPUTS\par
+ CASE 1:-\par
+\b0\fs22 gml5:assign2 cseb35$ gcc final.c -o final\par
+gml5:assign2 cseb35$ ./final\par
+ Enter the details\par
+ Register number 1\par
+ Name  Ram\par
+ Mark 1 56\par
+ Mark 2 78\par
+ Mark 3 67\par
+ Mark 4 89\par
+ Mark 5 56\par
+\par
+ Register number 2\par
+ Name  Raj\par
+ Mark 1 78\par
+ Mark 2 90\par
+ Mark 3 67  \par
+ Mark 4 89\par
+ Mark 5 67\par
+\par
+ Register number 3\par
+ Name  Somu\par
+ Mark 1 89\par
+ Mark 2 90\par
+ Mark 3 76\par
+ Mark 4 78\par
+ Mark 5 56\par
+\par
+ Register number 4\par
+ Name  Pooja\par
+ Mark 1 90\par
+ Mark 2 99\par
+ Mark 3 78\par
+ Mark 4 67\par
+ Mark 5 56\par
+\par
+ Register number 5\par
+ Name  Swetha\par
+ Mark 1 90\par
+ Mark 2 99\par
+ Mark 3 98\par
+ Mark 4 78\par
+ Mark 5 67\par
+\par
+ Enter your choice \par
+1.To insert a record in the front\par
+2.To insert a record in the end\par
+3.To insert a record after given reg num\par
+4.To search a given record based on name\par
+5.To delete a given recod\par
+6.To Display all student's record\par
+7.To Display the previous and next record of the given student\par
+Enter\tab 1\par
+\par
+To insert in the front of the list\par
+Enter the new details \par
+ Register number 6\par
+ Name  Tamil\par
+ Mark 1 89\par
+ Mark 2 87\par
+ Mark 3 89\par
+ Mark 4 78\par
+ Mark 5 78\par
+\par
+ The details are\par
+ Register number 6\par
+ Name  Tamil\par
+ Mark 1 89\par
+ Mark 2 87\par
+ Mark 3 89\par
+ Mark 4 78\par
+ Mark 5 78\par
+\par
+ Register number 1\par
+ Name  Ram\par
+ Mark 1 56\par
+ Mark 2 78\par
+ Mark 3 67\par
+ Mark 4 89\par
+ Mark 5 56\par
+\par
+ Register number 2\par
+ Name  Raj\par
+ Mark 1 78\par
+ Mark 2 90\par
+ Mark 3 67\par
+ Mark 4 89\par
+ Mark 5 67\par
+\par
+ Register number 3\par
+ Name  Somu\par
+ Mark 1 89\par
+ Mark 2 90\par
+ Mark 3 76\par
+ Mark 4 78\par
+ Mark 5 56\par
+\par
+ Register number 4\par
+ Name  Pooja\par
+ Mark 1 90\par
+ Mark 2 99\par
+ Mark 3 78\par
+ Mark 4 67\par
+ Mark 5 56\par
+\par
+ Register number 5\par
+ Name  Swetha\par
+ Mark 1 90\par
+ Mark 2 99\par
+ Mark 3 98\par
+ Mark 4 78\par
+ Mark 5 67\par
+\par
+CASE 2:-\par
+gml5:assign2 cseb35$ gcc final.c -o final\par
+gml5:assign2 cseb35$ ./final\par
+ Enter the details\par
+ Register number 1\par
+ Name  Ram\par
+ Mark 1 56\par
+ Mark 2 78\par
+ Mark 3 67\par
+ Mark 4 89\par
+ Mark 5 56\par
+\par
+ Register number 2\par
+ Name  Raj\par
+ Mark 1 78\par
+ Mark 2 90\par
+ Mark 3 67  \par
+ Mark 4 89\par
+ Mark 5 67\par
+\par
+ Register number 3\par
+ Name  Somu\par
+ Mark 1 89\par
+ Mark 2 90\par
+ Mark 3 76\par
+ Mark 4 78\par
+ Mark 5 56\par
+\par
+ Register number 4\par
+ Name  Pooja\par
+ Mark 1 90\par
+ Mark 2 99\par
+ Mark 3 78\par
+ Mark 4 67\par
+ Mark 5 56\par
+\par
+ Register number 5\par
+ Name  Swetha\par
+ Mark 1 90\par
+ Mark 2 99\par
+ Mark 3 98\par
+ Mark 4 78\par
+ Mark 5 67\par
+\par
+ Enter your choice \par
+1.To insert a record in the front\par
+2.To insert a record in the end\par
+3.To insert a record after given reg num\par
+4.To search a given record based on name\par
+5.To delete a given recod\par
+6.To Display all student's record\par
+7.To Display the previous and next record of the given student\par
+Enter\tab 2\par
+\par
+To insert in the end of the list\par
+Enter the new details \par
+ Register number 6\par
+ Name  Siva\par
+ Mark 1 89\par
+ Mark 2 87\par
+ Mark 3 89\par
+ Mark 4 78\par
+ Mark 5 78\par
+\par
+ The details are\par
+ Register number 1\par
+ Name  Ram\par
+ Mark 1 56\par
+ Mark 2 78\par
+ Mark 3 67\par
+ Mark 4 89\par
+ Mark 5 56\par
+\par
+ Register number 2\par
+ Name  Raj\par
+ Mark 1 78\par
+ Mark 2 90\par
+ Mark 3 67\par
+ Mark 4 89\par
+ Mark 5 67\par
+\par
+ Register number 3\par
+ Name  Somu\par
+ Mark 1 89\par
+ Mark 2 90\par
+ Mark 3 76\par
+ Mark 4 78\par
+ Mark 5 56\par
+\par
+ Register number 4\par
+ Name  Pooja\par
+ Mark 1 90\par
+ Mark 2 99\par
+ Mark 3 78\par
+ Mark 4 67\par
+ Mark 5 56\par
+\par
+ Register number 5\par
+ Name  Swetha\par
+ Mark 1 90\par
+ Mark 2 99\par
+ Mark 3 98\par
+ Mark 4 78\par
+ Mark 5 67\par
+\par
+Register number 6\par
+ Name  Siva\par
+ Mark 1 89\par
+ Mark 2 87\par
+ Mark 3 89\par
+ Mark 4 78\par
+ Mark 5 78\par
+\par
+CASE 3:-\par
+a)Not Found\par
+  gml5:assign2 cseb35$ gcc final.c -o final\par
+ gml5:assign2 cseb35$ ./final\par
+\par
+ Enter the details\par
+ Register number 1\par
+ Name  John\par
+ Mark 1 67\par
+ Mark 2 89\par
+ Mark 3 657\par
+ Mark 4 56\par
+ Mark 5 56\par
+\par
+ Register number 2\par
+ Name  Somu\par
+ Mark 1 78\par
+ Mark 2 89\par
+ Mark 3 56\par
+ Mark 4 78\par
+ Mark 5 67\par
+\par
+ Register number 3\par
+ Name  Raj\par
+ Mark 1 67\par
+ Mark 2 789\par
+ Mark 3 67\par
+ Mark 4 67\par
+ Mark 5 78\par
+\par
+ Register number 4\par
+ Name  Sheela\par
+ Mark 1 67\par
+ Mark 2 89\par
+ Mark 3 78\par
+ Mark 4 89\par
+ Mark 5 78\par
+\par
+ Register number 5\par
+ Name  Vasu\par
+ Mark 1 89\par
+ Mark 2 78\par
+ Mark 3 78 \par
+ Mark 4 90\par
+ Mark 5 78\par
+\par
+ Enter your choice \par
+1.To insert a record in the front\par
+2.To insert a record in the end\par
+3.To insert a record after given reg num\par
+4.To search a given record based on name\par
+5.To delete a given recod\par
+6.To Display all student's record\par
+7.To Display the previous and next record of the given student\par
+Enter\tab 3\par
+\par
+To insert record after given Regno\par
+Enter the reg num\tab 7\par
+Register number not found\par
+B)Found\par
+gml5:assign2 cseb35$ gcc final.c -o final\par
+gml5:assign2 cseb35$ ./final\par
+\par
+ Enter the details\par
+ Register number 1\par
+ Name  John\par
+ Mark 1 56\par
+ Mark 2 67\par
+ Mark 3 67\par
+ Mark 4 78\par
+ Mark 5 78\par
+\par
+ Register number 2\par
+ Name  Vasu\par
+ Mark 1 89\par
+ Mark 2 78\par
+ Mark 3 90\par
+ Mark 4 67\par
+ Mark 5 89\par
+\par
+ Register number 3\par
+ Name  Pooja\par
+ Mark 1 89\par
+ Mark 2 90\par
+ Mark 3 78\par
+ Mark 4 89\par
+ Mark 5 78\par
+\par
+ Register number 4\par
+ Name  Raj\par
+ Mark 1 89\par
+ Mark 2 78\par
+ Mark 3 90\par
+ Mark 4 67\par
+ Mark 5 78\par
+\par
+ Register number 5\par
+ Name  Siva\par
+ Mark 1 89\par
+ Mark 2 90\par
+ Mark 3 67\par
+ Mark 4 89\par
+ Mark 5 56\par
+\par
+ Enter your choice \par
+1.To insert a record in the front\par
+2.To insert a record in the end\par
+3.To insert a record after given reg num\par
+4.To search a given record based on name\par
+5.To delete a given recod\par
+6.To Display all student's record\par
+7.To Display the previous and next record of the given student\par
+Enter\tab 3\par
+\par
+To insert record after given Regno\par
+Enter the reg num\tab 3\par
+Enter the new details \par
+ Register number 7\par
+\par
+ Name  Dhoni\par
+ Mark 1 78\par
+ Mark 2 90\par
+ Mark 3 67\par
+ Mark 4 45\par
+ Mark 5 78\par
+\par
+ The details are\par
+ Register number 1\par
+ Name  John\par
+ Mark 1 56\par
+ Mark 2 67\par
+ Mark 3 67\par
+ Mark 4 78\par
+ Mark 5 78\par
+\par
+ Register number 2\par
+ Name  Vasu\par
+ Mark 1 89\par
+ Mark 2 78\par
+ Mark 3 90\par
+ Mark 4 67\par
+ Mark 5 89\par
+\par
+ Register number 3\par
+ Name  Pooja\par
+ Mark 1 89\par
+ Mark 2 90\par
+ Mark 3 78\par
+ Mark 4 89\par
+ Mark 5 78\par
+\par
+ Register number 7\par
+ Name  Dhoni\par
+ Mark 1 78\par
+ Mark 2 90\par
+ Mark 3 67\par
+ Mark 4 45\par
+ Mark 5 78\par
+\par
+ Register number 4\par
+ Name  Raj\par
+ Mark 1 89\par
+ Mark 2 78\par
+ Mark 3 90\par
+ Mark 4 67\par
+ Mark 5 78\par
+\par
+ Register number 5\par
+ Name  Siva\par
+ Mark 1 89\par
+ Mark 2 90\par
+ Mark 3 67\par
+ Mark 4 89\par
+ Mark 5 56\par
+\par
+CASE 4:-\par
+a)Found:-\par
+gml5:assign2 cseb35$ gcc final.c -o final\par
+gml5:assign2 cseb35$ ./final\par
+\par
+ Enter the details\par
+ Register number 1\par
+ Name  Raj\par
+ Mark 1 67\par
+ Mark 2 78\par
+ Mark 3 89\par
+ Mark 4 67\par
+ Mark 5 67\par
+\par
+ Register number 21\par
+ Name  Ram\par
+ Mark 1 78\par
+ Mark 2 56\par
+ Mark 3 456\par
+ Mark 4 45\par
+ Mark 5 45\par
+\par
+ Register number 45\par
+ Name  Siva\par
+ Mark 1 89\par
+ Mark 2 78\par
+ Mark 3 56\par
+ Mark 4 78\par
+ Mark 5 56 \par
+\par
+ Register number 96\par
+ Name  Pooja\par
+ Mark 1 99\par
+ Mark 2 98\par
+ Mark 3 97\par
+ Mark 4 96\par
+ Mark 5 99\par
+\par
+ Register number 67\par
+ Name  Vasu\par
+ Mark 1 78\par
+ Mark 2 89\par
+ Mark 3 90\par
+ Mark 4 78\par
+ Mark 5 67\par
+\par
+ Enter your choice \par
+1.To insert a record in the front\par
+2.To insert a record in the end\par
+3.To insert a record after given reg num\par
+4.To search a given record based on name\par
+5.To delete a given recod\par
+6.To Display all student's record\par
+7.To Display the previous and next record of the given student\par
+Enter\tab 4\par
+\par
+To Search for a given record\par
+Enter the name to search\tab Pooja\par
+\par
+ The details are\par
+ Register number 96\par
+ Name  Pooja\par
+ Mark 1 99\par
+ Mark 2 98\par
+ Mark 3 97\par
+ Mark 4 96\par
+ Mark 5 99\par
+\par
+b)Not Found\par
+\par
+gml5:assign2 cseb35$ gcc final.c -o final\par
+gml5:assign2 cseb35$ ./final\par
+\par
+ Enter the details\par
+ Register number 1\par
+ Name  Raj\par
+ Mark 1 67\par
+ Mark 2 78\par
+ Mark 3 89\par
+ Mark 4 67\par
+ Mark 5 67\par
+\par
+ Register number 21\par
+ Name  Ram\par
+ Mark 1 78\par
+ Mark 2 56\par
+ Mark 3 456\par
+ Mark 4 45\par
+ Mark 5 45\par
+\par
+ Register number 45\par
+ Name  Siva\par
+ Mark 1 89\par
+ Mark 2 78\par
+ Mark 3 56\par
+ Mark 4 78\par
+ Mark 5 56 \par
+\par
+ Register number 96\par
+ Name  Pooja\par
+ Mark 1 99\par
+ Mark 2 98\par
+ Mark 3 97\par
+ Mark 4 96\par
+ Mark 5 99\par
+\par
+ Register number 67\par
+ Name  Vasu\par
+ Mark 1 78\par
+ Mark 2 89\par
+ Mark 3 90\par
+ Mark 4 78\par
+ Mark 5 67\par
+\par
+ Enter your choice \par
+1.To insert a record in the front\par
+2.To insert a record in the end\par
+3.To insert a record after given reg num\par
+4.To search a given record based on name\par
+5.To delete a given recod\par
+6.To Display all student's record\par
+7.To Display the previous and next record of the given student\par
+Enter\tab 4\par
+\par
+To Search for a given record\par
+Enter the name to search\tab Selvi\par
+Student Name not found\par
+\par
+CASE 5:-\par
+a)Found:\par
+  \par
+  gml5:assign2 cseb35$ gcc final.c -o final\par
+ gml5:assign2 cseb35$ ./final\par
+\par
+ Enter the details\par
+ Register number 1\par
+ Name  Raj\par
+ Mark 1 67\par
+ Mark 2 78\par
+Mark 3 67\par
+ Mark 4 65 \par
+ Mark 5 90\par
+\par
+ Register number 2\par
+ Name  Ramu\par
+ Mark 1 67\par
+ Mark 2 89\par
+ Mark 3 67\par
+ Mark 4 89\par
+ Mark 5 90\par
+\par
+ Register number 3\par
+ Name  Babu\par
+ Mark 1 78\par
+ Mark 2 90\par
+ Mark 3 78\par
+ Mark 4 90\par
+ Mark 5 78\par
+\par
+ Register number 4\par
+ Name  John\par
+ Mark 1 89\par
+ Mark 2 67\par
+ Mark 3 89\par
+ Mark 4 78\par
+ Mark 5 67\par
+\par
+ Register number 5\par
+ Name  Khan\par
+ Mark 1 78\par
+ Mark 2 67\par
+ Mark 3 56\par
+ Mark 4 45\par
+ Mark 5 34\par
+\par
+ Enter your choice \par
+1.To insert a record in the front\par
+2.To insert a record in the end\par
+3.To insert a record after given reg num\par
+4.To search a given record based on name\par
+5.To delete a given recod\par
+6.To Display all student's record\par
+7.To Display the previous and next record of the given student\par
+Enter\tab 5\par
+\par
+To Delete a given record\par
+Enter the name to delete\tab Babu\par
+\par
+ The details are\par
+ Register number 1\par
+ Name  Raj\par
+ Mark 1 67\par
+ Mark 2 78\par
+ Mark 3 67\par
+ Mark 4 65\par
+ Mark 5 90\par
+\par
+ Register number 2\par
+ Name  Ramu\par
+ Mark 1 67\par
+ Mark 2 89\par
+ Mark 3 67\par
+ Mark 4 89\par
+ Mark 5 90\par
+\par
+ Register number 4\par
+ Name  John\par
+ Mark 1 89\par
+ Mark 2 67\par
+ Mark 3 89\par
+ Mark 4 78\par
+ Mark 5 67\par
+\par
+ Register number 5\par
+ Name  Khan\par
+ Mark 1 78\par
+ Mark 2 67\par
+ Mark 3 56\par
+ Mark 4 45\par
+ Mark 5 34\par
+\par
+B)Not Found:\par
+ \par
+  gml5:assign2 cseb35$ gcc final.c -o final\par
+ gml5:assign2 cseb35$ ./final\par
+\par
+ Enter the details\par
+ Register number 1\par
+ Name  Raj\par
+ Mark 1 67\par
+ Mark 2 78\par
+ Mark 3 67\par
+ Mark 4 65 \par
+ Mark 5 90\par
+\par
+ Register number 2\par
+ Name  Ramu\par
+ Mark 1 67\par
+ Mark 2 89\par
+ Mark 3 67\par
+ Mark 4 89\par
+ Mark 5 90\par
+\par
+ Register number 3\par
+ Name  Babu\par
+ Mark 1 78\par
+ Mark 2 90\par
+ Mark 3 78\par
+ Mark 4 90\par
+ Mark 5 78\par
+\par
+ Register number 4\par
+ Name  John\par
+ Mark 1 89\par
+ Mark 2 67\par
+ Mark 3 89\par
+ Mark 4 78\par
+ Mark 5 67\par
+\par
+ Register number 5\par
+ Name  Khan\par
+ Mark 1 78\par
+ Mark 2 67\par
+ Mark 3 56\par
+ Mark 4 45\par
+ Mark 5 34\par
+ \par
+Enter your choice \par
+1.To insert a record in the front\par
+2.To insert a record in the end\par
+3.To insert a record after given reg num\par
+4.To search a given record based on name\par
+5.To delete a given recod\par
+6.To Display all student's record\par
+7.To Display the previous and next record of the given student\par
+Enter\tab 5\par
+\par
+To Delete a given record\par
+Enter the name to delete\tab Sheela\par
+Student Name not found\par
+\par
+CASE 6:-\par
+\par
+gml5:assign2 cseb35$ gcc final.c -o final\par
+gml5:assign2 cseb35$ ./final\par
+\par
+ Enter the details\par
+ Register number 1\par
+ Name  Ram\par
+ Mark 1 56\par
+ Mark 2 78\par
+ Mark 3 67\par
+ Mark 4 89\par
+ Mark 5 56\par
+\par
+ Register number 2\par
+ Name  Raj\par
+ Mark 1 78\par
+ Mark 2 90\par
+ Mark 3 67  \par
+ Mark 4 89\par
+ Mark 5 67\par
+\par
+ Register number 3\par
+ Name  Somu\par
+ Mark 1 89\par
+ Mark 2 90\par
+ Mark 3 76\par
+ Mark 4 78\par
+ Mark 5 56\par
+\par
+ Register number 4\par
+ Name  Pooja\par
+ Mark 1 90\par
+ Mark 2 99\par
+ Mark 3 78\par
+ Mark 4 67\par
+ Mark 5 56\par
+\par
+ Register number 5\par
+ Name  Swetha\par
+ Mark 1 90\par
+ Mark 2 99\par
+ Mark 3 98\par
+ Mark 4 78\par
+ Mark 5 67\par
+\par
+ Enter your choice \par
+1.To insert a record in the front\par
+2.To insert a record in the end\par
+3.To insert a record after given reg num\par
+4.To search a given record based on name\par
+5.To delete a given recod\par
+6.To Display all student's record\par
+7.To Display the previous and next record of the given student\par
+Enter\tab 6\par
+\par
+ The details are\par
+ Register number 1\par
+ Name  Ram\par
+ Mark 1 56\par
+ Mark 2 78\par
+ Mark 3 67\par
+ Mark 4 89\par
+ Mark 5 56\par
+\par
+ Register number 2\par
+ Name  Raj\par
+ Mark 1 78\par
+ Mark 2 90\par
+ Mark 3 67\par
+ Mark 4 89\par
+ Mark 5 67\par
+\par
+ Register number 3\par
+ Name  Somu\par
+ Mark 1 89\par
+ Mark 2 90\par
+ Mark 3 76\par
+ Mark 4 78\par
+ Mark 5 56\par
+\par
+ Register number 4\par
+ Name  Pooja\par
+ Mark 1 90\par
+ Mark 2 99\par
+ Mark 3 78\par
+ Mark 4 67\par
+ Mark 5 56\par
+\par
+ Register number 5\par
+ Name  Swetha\par
+ Mark 1 90\par
+ Mark 2 99\par
+ Mark 3 98\par
+ Mark 4 78\par
+ Mark 5 67\par
+\par
+CASE 7:-\par
+a)Found:\par
+gml5:assign2 cseb35$ gcc final.c -o final\par
+gml5:assign2 cseb35$ ./final\par
+\par
+ Enter the details\par
+ Register number 1\par
+ Name  Ram\par
+ Mark 1 67\par
+ Mark 2 89\par
+ Mark 3 67\par
+ Mark 4 90\par
+ Mark 5 99\par
+\par
+ Register number 2\par
+ Name  Swetha\par
+ Mark 1 90\par
+ Mark 2 67\par
+ Mark 3 89\par
+ Mark 4 90\par
+ Mark 5 99\par
+\par
+ Register number 3\par
+ Name  Pooja\par
+ Mark 1 89\par
+ Mark 2 90\par
+ Mark 3 78\par
+ Mark 4 90\par
+ Mark 5 89\par
+\par
+ Register number 4\par
+ Name  Siva\par
+ Mark 1 89\par
+ Mark 2 90\par
+ Mark 3 99\par
+ Mark 4 89\par
+ Mark 5 90\par
+\par
+ Register number 5\par
+ Name  Tamil\par
+ Mark 1 90\par
+ Mark 2 99 \par
+ Mark 3 89\par
+ Mark 4 78\par
+ Mark 5 88\par
+\par
+ Enter your choice \par
+1.To insert a record in the front\par
+2.To insert a record in the end\par
+3.To insert a record after given reg num\par
+4.To search a given record based on name\par
+5.To delete a given recod\par
+6.To Display all student's record\par
+7.To Display the previous and next record of the given student\par
+Enter\tab 7\par
+\par
+To Display the previous and next record of given student\par
+Enter the name\tab Pooja\par
+\par
+The previous record details are\par
+ Register number 2\par
+ Name  Swetha\par
+ Mark 1 90\par
+ Mark 2 67\par
+ Mark 3 89\par
+ Mark 4 90\par
+ Mark 5 99\par
+The next record details are\par
+ Register number 4\par
+ Name  Siva\par
+ Mark 1 89\par
+ Mark 2 90\par
+ Mark 3 99\par
+ Mark 4 89\par
+ Mark 5 90\par
+\par
+b)Not Found:-\par
+  gml5:assign2 cseb35$ gcc final.c -o final\par
+gml5:assign2 cseb35$ ./final\par
+\par
+ Enter the details\par
+ Register number 1\par
+ Name  Ram\par
+ Mark 1 67\par
+ Mark 2 89\par
+ Mark 3 67\par
+ Mark 4 90\par
+ Mark 5 99\par
+\par
+ Register number 2\par
+ Name  Swetha\par
+ Mark 1 90\par
+ Mark 2 67\par
+ Mark 3 89\par
+ Mark 4 90\par
+ Mark 5 99\par
+\par
+ Register number 3\par
+ Name  Pooja\par
+ Mark 1 89\par
+ Mark 2 90\par
+ Mark 3 78\par
+ Mark 4 90\par
+ Mark 5 89\par
+\par
+ Register number 4\par
+ Name  Siva\par
+ Mark 1 89\par
+ Mark 2 90\par
+ Mark 3 99\par
+ Mark 4 89\par
+ Mark 5 90\par
+\par
+ Register number 5\par
+ Name  Tamil\par
+ Mark 1 90\par
+ Mark 2 99 \par
+ Mark 3 89\par
+ Mark 4 78\par
+ Mark 5 88\par
+\par
+ Enter your choice \par
+1.To insert a record in the front\par
+2.To insert a record in the end\par
+3.To insert a record after given reg num\par
+4.To search a given record based on name\par
+5.To delete a given recod\par
+6.To Display all student's record\par
+7.To Display the previous and next record of the given student\par
+Enter\tab 7\par
+\par
+To Display the previous and next record of given student\par
+Enter the name\tab John\par
+Student name not found\par
+}
+ 
